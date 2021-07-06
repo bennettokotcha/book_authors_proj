@@ -1,0 +1,21 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    /* outline: 1px dotted yellowgreen; */
+}
+body {
+    display: flex;
+    margin-top: 85px;
+}
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+#book_form p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -1,0 +1,76 @@
+>>> Book.objects.create(title='C Sharp', desc='dont know about this enough to give  a description on it')
+<Book: Book object (1)>
+>>> Book.objects.create(title='Java', desc='i heard it is a very strict programming lang thats good for creating gaming apps')
+<Book: Book object (2)>
+>>> Book.objects.create(title='Python', desc='backend-programming lang that contains alo tof simple english so its a good place to start learning')
+<Book: Book object (3)>
+>>> Book.objects.create(title='PHP', desc='id have to do some research before i gave a description')
+<Book: Book object (4)>
+>>> Book.objects.create(title='Ruby', desc='object-oreinted scripting language')
+<Book: Book object (5)>
+>>> Author.objects.create(first_name='Jane', last_name='Austen')
+<Author: Author object (1)>
+>>> Author.objects.create(first_name='Emily', last_name='Dickinson')
+<Author: Author object (2)>
+>>> Author.objects.create(first_name='Fyodor', last_name='Dostoevesky')
+<Author: Author object (3)>
+>>> Author.objects.create(first_name='William', last_name='Shakespeare')
+<Author: Author object (4)>
+>>> Author.objects.create(first_name='Lau', last_name='Tzu')
+<Author: Author object (5)>
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> 'no notes made'
+(djangoPyEnv) Ifeomas-iMac:book_authors_proj bennettokotcha$ python manage.py makemigrations
+djangoPyEnv) Ifeomas-iMac:book_authors_proj bennettokotcha$ python manage.py migrate
+(djangoPyEnv) Ifeomas-iMac:book_authors_proj bennettokotcha$ python manage.py shell
+>>> from book_authors_app.models import *
+>>> book_title_change=Book.objects.get(title='C Sharp')
+>>> book_title_change.title='C#'
+>>> book_title_change.save()
+>>> Book.objects.get(title='C#')
+<Book: Book object (1)>
+>>> change1stname=Author.objects.get(id=4)
+>>> change1stname.first_name='Bill'
+>>> change1stname.save()
+>>> Author.objects.get(first_name='Bill')
+<Author: Author object (4)>
+>>> author1=Author.objects.get(id=1)
+>>> book1=Book.objects.get(id=1)
+>>> author1.books.add(book1)
+>>> book2=Book.objects.get(id=2)
+>>> author1.books.add(book2)
+>>> author1.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
+>>> author2=Author.objects.get(id=2)
+>>> author2.books.add(book1)
+>>> author2.books.add(book2)
+>>> book3=Book.objects.get(id=3)
+>>> author2.books.add(book3)
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
+>>> author3=Author.objects.get(id=3)
+>>> author3.books.add(book1, book2, book3)
+>>> book4=Book.objects.get(id=4)
+>>> author3.books.add(book4)
+>>> author3.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>> book5=Book.objects.get(id=5)
+>>> author4=Author.objects.get(id=4)
+>>> author4.books.add(book1, book2, book3, book4, book5)
+author4.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, Book: Book object (5)>]> 
+>>> book3.authors.all()
+<QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+>>> book3.authors.remove(author2)
+>>> book3.authors.all()
+<QuerySet [<Author: Author object (3)>, <Author: Author object (4)>]>
+>>> author5=Author.objects.get(id=5)
+>>> book2.authors.add(author5)
+>>> book2.authors.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author
+object (4)>, <Author: Author object (5)>]>
+>>> author3.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>> book5.authors.all()
+<QuerySet [<Author: Author object (4)>]>

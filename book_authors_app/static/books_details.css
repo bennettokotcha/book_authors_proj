@@ -1,0 +1,14 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    /* outline: 1px dotted yellowgreen; */
+}
+body {
+    margin-top: 85px;
+}
+.bold_p {
+    font-weight: bold;
+}
+p, h1, ul {
+    padding: 25px;
+}
